@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jungle-orange: #F15A2B;
+  --jungle-yellow: #FFD700;
+  --jungle-dark: #1a1a1a;
+}
+
+body {
+  color: var(--jungle-dark);
+}
+
+/* Geometric Typography - placeholder styles */
+.jungle-title {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  width: 100vw;
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+/* Stretched version for landing page */
+.jungle-title-stretched {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  width: 100%;
+  transform: scaleX(1.8);
+  transform-origin: center;
+  font-size: clamp(2rem, 6vw, 5rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.geometric-cuts {
+  /* Add geometric cut-off effects */
+  clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+}
