@@ -3,8 +3,8 @@ import './globals.css'
 import { CartProvider } from '@/contexts/CartContext'
 
 export const metadata: Metadata = {
-  title: 'Jungle Sale - Plants from the Archives',
-  description: 'Plants for sale from the Archives in Tottenham. By appointment only.',
+  title: 'Jungle Sale - Premium Plant Studio',
+  description: 'Your premium plant studio for wholesale, events, and retail plants. Based in Tottenham, London.',
 }
 
 export default function RootLayout({
