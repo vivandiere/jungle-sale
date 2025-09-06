@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { useCart } from '@/contexts/CartContext'
+import { useState } from 'react'
+import CartDrawer from './CartDrawer'
 
 interface HeaderProps {
   overlay?: boolean
@@ -12,16 +14,20 @@ interface HeaderProps {
 
 export default function Header({ overlay = false, showCart = false, showClose = false, onClose }: HeaderProps) {
   const { count } = useCart()
+  const [isCartOpen, setIsCartOpen] = useState(false)
   if (overlay) {
     // Overlay header for landing page - sits directly on colored sections, stretched to viewport
     return (
-      <div className="absolute top-0 left-0 right-0 z-50 py-4 flex justify-center items-center overflow-hidden">
-        <Link href="/" className="w-full">
-          <h1 className="jungle-title-stretched text-black text-center cursor-pointer">
-            JUNGLE SALE
-          </h1>
-        </Link>
-      </div>
+      <>
+        <div className="absolute top-0 left-0 right-0 z-50 py-4 flex justify-center items-center overflow-hidden">
+          <Link href="/" className="w-full">
+            <h1 className="jungle-title-stretched text-black text-center cursor-pointer">
+              JUNGLE SALE
+            </h1>
+          </Link>
+        </div>
+        <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      </>
     )
   }
 
@@ -36,9 +42,12 @@ export default function Header({ overlay = false, showCart = false, showClose = 
       
       {/* Cart Counter */}
       {showCart && (
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black font-bold text-lg">
+        <button 
+          onClick={() => setIsCartOpen(true)}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black font-bold text-lg hover:text-gray-700 transition-colors cursor-pointer"
+        >
           ({count}) On hold
-        </div>
+        </button>
       )}
       
       {/* Close Buttons - X and Close text grouped on left */}
@@ -58,6 +67,8 @@ export default function Header({ overlay = false, showCart = false, showClose = 
           </button>
         </div>
       )}
+      
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   )
 }
