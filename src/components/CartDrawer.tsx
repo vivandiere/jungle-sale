@@ -42,37 +42,37 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         />
       )}
       
-      {/* Drawer */}
-      <div className={`fixed top-0 right-0 h-full w-96 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-50 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
+              {/* Drawer */}
+              <div className={`fixed top-0 right-0 h-screen w-96 bg-jungle-orange shadow-xl transform transition-transform duration-300 ease-in-out z-50 ${
+                isOpen ? 'translate-x-0' : 'translate-x-full'
+              }`}>
         
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-black">On Hold ({count})</h2>
+        <div className="flex items-center justify-between p-6 border-b-2 border-black">
+                  <h2 className="text-2xl font-jungle-black text-black uppercase">On Hold ({count})</h2>
           <button 
             onClick={onClose}
-            className="text-black hover:text-gray-600 text-2xl font-bold"
+            className="text-black hover:text-black text-2xl font-bold"
           >
             ×
           </button>
         </div>
 
-        {/* Cart Content */}
-        <div className="flex flex-col h-full">
+                {/* Cart Content */}
+                <div className="flex flex-col h-full max-h-screen">
           {/* Items List */}
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 overflow-y-auto p-6 pb-4">
             {items.length === 0 ? (
               <div className="text-center py-12">
-                <div className="text-gray-400 text-lg mb-4">Your cart is empty</div>
-                <p className="text-gray-500">Add some plants to get started!</p>
+                <div className="text-black text-lg mb-4">Your cart is empty</div>
+                <p className="text-black">Add some plants to get started!</p>
               </div>
             ) : (
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={item.id} className="flex items-start gap-4 p-4 border border-gray-200 rounded-lg">
+                  <div key={item.id} className="flex items-start gap-4 p-4 border-2 border-black">
                     {/* Plant Image */}
-                    <div className="w-16 h-16 relative flex-shrink-0 overflow-hidden rounded">
+                    <div className="w-16 h-20 relative flex-shrink-0 overflow-hidden aspect-[4/5]">
                       <Image
                         src={item.image}
                         alt={item.name}
@@ -84,22 +84,22 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     
                     {/* Plant Details */}
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-black text-sm italic mb-1">{item.name}</h3>
-                      <p className="text-sm text-gray-600 mb-1">{item.size} • {item.height}</p>
+                              <h3 className="font-jungle-heavy text-black text-sm italic mb-1">{item.name}</h3>
+                      <p className="text-sm text-black mb-1">{item.size} • {item.height}</p>
                       <p className="font-bold text-black">{formatPrice(item.price)}</p>
                       
                       {/* Quantity Controls */}
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                          className="w-8 h-8 border-2 border-black flex items-center justify-center text-black hover:bg-black hover:text-jungle-orange"
                         >
                           −
                         </button>
-                        <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                        <span className="w-8 text-center text-sm font-medium text-black">{item.quantity}</span>
                         <button
                           onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                          className="w-8 h-8 border border-gray-300 rounded flex items-center justify-center text-gray-600 hover:bg-gray-100"
+                          className="w-8 h-8 border-2 border-black flex items-center justify-center text-black hover:bg-black hover:text-jungle-orange"
                         >
                           +
                         </button>
@@ -109,7 +109,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     {/* Remove Button */}
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="text-gray-400 hover:text-red-500 p-1"
+                      className="text-black hover:text-black p-1"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -123,28 +123,28 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
           {/* Footer */}
           {items.length > 0 && (
-            <div className="border-t border-gray-200 p-6 bg-white">
+            <div className="border-t-2 border-black p-6 pb-8 bg-jungle-orange">
               {/* Total */}
               <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-bold text-black">Total:</span>
-                <span className="text-2xl font-bold text-black">{formatPrice(total)}</span>
+                <span className="text-lg font-jungle-heavy text-black uppercase">Total:</span>
+                <span className="text-2xl font-jungle-black text-black">{formatPrice(total)}</span>
               </div>
               
               {/* Action Buttons */}
               <div className="space-y-3">
-                <button className="w-full bg-black text-white py-3 px-4 rounded font-bold hover:bg-gray-800 transition-colors">
-                  Request Quote
-                </button>
+                        <button className="w-full bg-black text-jungle-orange py-3 px-4 font-jungle-bold hover:bg-jungle-yellow hover:text-black transition-colors uppercase">
+                          Book pickup slot
+                        </button>
                 <button 
                   onClick={clearCart}
-                  className="w-full border border-gray-300 text-gray-600 py-2 px-4 rounded font-medium hover:bg-gray-50 transition-colors"
+                  className="w-full border-2 border-black text-black py-2 px-4 font-jungle-bold hover:bg-black hover:text-jungle-orange transition-colors uppercase"
                 >
                   Clear All
                 </button>
               </div>
               
               {/* Note */}
-              <p className="text-xs text-gray-500 mt-4 text-center">
+              <p className="text-xs text-black mt-4 text-center">
                 Plants are held for 24 hours. Contact for pickup arrangements.
               </p>
             </div>

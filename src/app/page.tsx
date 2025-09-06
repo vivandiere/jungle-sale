@@ -9,8 +9,8 @@ export default function Home() {
       
       {/* Top Section - Wholesale & Events (Yellow) */}
       <Link href="/wholesale" className="w-full md:w-1/2 h-[50vh] md:h-screen bg-jungle-yellow flex flex-col justify-center items-center p-6 md:p-12 cursor-pointer">
-        {/* Wholesale Hero Image */}
-        <div className="w-full max-w-lg mb-4 md:mb-8 relative aspect-[4/5] overflow-hidden">
+        {/* Wholesale Hero Image - Horizontally Centered */}
+        <div className="w-full max-w-xl mb-4 md:mb-8 relative aspect-[4/5] overflow-hidden mx-auto">
           <Image
             src="/images/wholesale-hero.jpg"
             alt="Orange speaker equipment setup"
@@ -27,8 +27,8 @@ export default function Home() {
 
       {/* Bottom Section - Studio Shop (Orange) */}
       <Link href="/shop" className="w-full md:w-1/2 h-[50vh] md:h-screen bg-jungle-orange flex flex-col justify-center items-center p-6 md:p-12 cursor-pointer">
-        {/* Studio Shop Hero Image */}
-        <div className="w-full max-w-lg mb-4 md:mb-8 relative aspect-[4/5] overflow-hidden">
+        {/* Studio Shop Hero Image - Horizontally Centered */}
+        <div className="w-full max-w-xl mb-4 md:mb-8 relative aspect-[4/5] overflow-hidden mx-auto">
           <Image
             src="/images/studio-hero.jpg"
             alt="Plant shelving and studio setup"

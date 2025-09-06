@@ -13,6 +13,12 @@ export interface Plant {
   stockS: number
   stockM: number
   stockL: number
+  sizeSName?: string
+  sizeMName?: string
+  sizeLName?: string
+  sizeSHeight?: string
+  sizeMHeight?: string
+  sizeLHeight?: string
   displayOrder: number
 }
 
@@ -128,6 +134,12 @@ function getMockPlants(): Plant[] {
       stockS: 5,
       stockM: 5,
       stockL: 5,
+      sizeSName: "Small",
+      sizeMName: "Medium",
+      sizeLName: "Large",
+      sizeSHeight: "0.5-1m",
+      sizeMHeight: "~1m",
+      sizeLHeight: "~2m",
       displayOrder: 1
     },
     {
@@ -144,6 +156,12 @@ function getMockPlants(): Plant[] {
       stockS: 2,
       stockM: 2,
       stockL: 2,
+      sizeSName: "Pot",
+      sizeMName: "Tree",
+      sizeLName: "Statement",
+      sizeSHeight: "30-60cm",
+      sizeMHeight: "1-1.5m",
+      sizeLHeight: "1.5-2m+",
       displayOrder: 2
     }
   ]
@@ -161,8 +179,8 @@ export function getPlantSizes(plant: Plant) {
   
   if (plant.stockS > 0) {
     sizes.push({
-      size: 'Small',
-      height: '0.5-1m',
+      size: plant.sizeSName || 'Small',
+      height: plant.sizeSHeight || '0.5-1m',
       price: plant.priceS,
       stock: plant.stockS
     })
@@ -170,8 +188,8 @@ export function getPlantSizes(plant: Plant) {
   
   if (plant.stockM > 0) {
     sizes.push({
-      size: 'Medium', 
-      height: '~1m',
+      size: plant.sizeMName || 'Medium', 
+      height: plant.sizeMHeight || '~1m',
       price: plant.priceM,
       stock: plant.stockM
     })
@@ -179,8 +197,8 @@ export function getPlantSizes(plant: Plant) {
   
   if (plant.stockL > 0) {
     sizes.push({
-      size: 'Large',
-      height: '~2m', 
+      size: plant.sizeLName || 'Large',
+      height: plant.sizeLHeight || '~2m', 
       price: plant.priceL,
       stock: plant.stockL
     })

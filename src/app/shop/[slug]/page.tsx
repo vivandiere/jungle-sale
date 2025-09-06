@@ -6,7 +6,44 @@ import { useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import Image from 'next/image'
 import { useCart } from '@/contexts/CartContext'
-import { getPlantBySlug, getPlantSizes, getPlantImage, type Plant } from '@/lib/plants'
+import { getPlantSizes, getPlantImage, type Plant } from '@/lib/plants'
+import Toast from '@/components/Toast'
+
+// Direct mock plants data
+const mockPlantsData: Plant[] = [
+  {
+    commonName: "Swiss Cheese Plant",
+    latinName: "Monstera deliciosa",
+    slug: "monstera-deliciosa",
+    description: "Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",
+    imageUrls: ["/images/plants/monstera-deliciosa/large.jpg"],
+    imagePreview: "🌿 Monstera",
+    tags: "large",
+    priceS: 15,
+    priceM: 25,
+    priceL: 35,
+    stockS: 5,
+    stockM: 5,
+    stockL: 5,
+    displayOrder: 1
+  },
+  {
+    commonName: "Fiddle Leaf Fig",
+    latinName: "Ficus lyrata",
+    slug: "fiddle-leaf-fig",
+    description: "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
+    imageUrls: ["/images/plants/fiddle-leaf-fig/medium.jpg"],
+    imagePreview: "🎻 Fiddle Leaf",
+    tags: "large",
+    priceS: 10,
+    priceM: 20,
+    priceL: 20,
+    stockS: 2,
+    stockM: 2,
+    stockL: 2,
+    displayOrder: 2
+  }
+]
 
 interface ProductPageProps {
   params: {
@@ -16,36 +53,18 @@ interface ProductPageProps {
 
 export default function ProductPage({ params }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
-  const [plant, setPlant] = useState<Plant | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
   const router = useRouter()
   const { addItem } = useCart()
 
-  useEffect(() => {
-    async function loadPlant() {
-      try {
-        setLoading(true)
-        const plantData = await getPlantBySlug(params.slug)
-        if (!plantData) {
-          setError('Plant not found')
-        } else {
-          setPlant(plantData)
-          setError(null)
-        }
-      } catch (err) {
-        setError('Failed to load plant')
-        console.error('Error loading plant:', err)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadPlant()
-  }, [params.slug])
+  // Direct plant lookup - no async needed
+  const plant = mockPlantsData.find(p => p.slug === params.slug)
+  const loading = false
+  const error = plant ? null : 'Plant not found'
 
   const handleClose = () => {
-    router.back()
+    router.push('/shop')
   }
 
   const handleAddToCart = (sizeOption: ReturnType<typeof getPlantSizes>[0]) => {
@@ -64,6 +83,10 @@ export default function ProductPage({ params }: ProductPageProps) {
     
     addItem(cartItem)
     setSelectedSize(sizeOption.size)
+    
+    // Show toast notification
+    setToastMessage(`Added ${plant.commonName} (${sizeOption.size}) to Hold basket!`)
+    setShowToast(true)
   }
 
   if (loading) {
@@ -93,9 +116,14 @@ export default function ProductPage({ params }: ProductPageProps) {
   return (
     <div className="min-h-screen bg-jungle-orange relative">
       <Header showClose={true} onClose={handleClose} showCart={true} />
+      <Toast 
+        message={toastMessage}
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
       
       {/* Product Content */}
-      <div className="px-8 pb-8 pt-32">
+      <div className="px-8 pb-8 pt-4 md:pt-28">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl">
           {/* Product Image */}
           <div className="h-[60vh] md:h-[70vh] lg:h-[80vh] relative overflow-hidden">
@@ -111,9 +139,9 @@ export default function ProductPage({ params }: ProductPageProps) {
           {/* Product Details */}
           <div className="text-black">
             <div className="mb-4">
-              <div className="text-lg text-black/80 mb-2">{plant.commonName}</div>
-              <h1 className="text-4xl font-bold italic mb-4">{plant.latinName}</h1>
-              <p className="text-lg leading-relaxed mb-8">{plant.description}</p>
+              <div className="text-lg font-jungle-body text-black/80 mb-2">{plant.commonName}</div>
+              <h1 className="text-4xl font-jungle-black italic mb-4">{plant.latinName}</h1>
+              <p className="text-lg font-jungle-body leading-relaxed mb-8">{plant.description}</p>
             </div>
 
             {/* Size Options */}
@@ -128,17 +156,17 @@ export default function ProductPage({ params }: ProductPageProps) {
                   onClick={() => setSelectedSize(sizeOption.size)}
                 >
                   <div className="flex items-center gap-4">
-                    <span className="font-bold">{sizeOption.size}</span>
-                    <span>{sizeOption.height}</span>
-                    <span className="font-bold">£{sizeOption.price}</span>
-                    <span className="text-sm text-black/60">({sizeOption.stock} available)</span>
+                    <span className="font-jungle-heavy">{sizeOption.size}</span>
+                    <span className="font-jungle-body">{sizeOption.height}</span>
+                    <span className="font-jungle-heavy">£{sizeOption.price}</span>
+                    <span className="text-sm font-jungle-body text-black/60">({sizeOption.stock} available)</span>
                   </div>
                   <button 
                     onClick={(e) => {
                       e.stopPropagation()
                       handleAddToCart(sizeOption)
                     }}
-                    className="bg-black text-jungle-orange px-6 py-2 font-bold hover:bg-gray-800 transition-colors"
+                    className="bg-black text-jungle-orange px-6 py-2 font-jungle-bold hover:bg-jungle-yellow hover:text-black transition-colors uppercase"
                     disabled={sizeOption.stock === 0}
                   >
                     {sizeOption.stock === 0 ? 'Out of Stock' : 'Add +'}

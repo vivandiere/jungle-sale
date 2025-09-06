@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variable Font Import */
+@font-face {
+  font-family: 'NaN Serf Sans Pan African';
+  src: url('/fonts/NaNSerfSansPanAfrican-VF-TRIAL.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font Weight and Stretch Utilities */
+.font-jungle-light { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 300; 
+  font-stretch: 100%; 
+}
+
+.font-jungle-body { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 400; 
+  font-stretch: 100%; 
+}
+
+.font-jungle-medium { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 500; 
+  font-stretch: 110%; 
+}
+
+.font-jungle-bold { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 800; 
+  font-stretch: 120%; 
+}
+
+.font-jungle-heavy { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 900; 
+  font-stretch: 130%; 
+}
+
+.font-jungle-black { 
+  font-family: 'NaN Serf Sans Pan African', sans-serif; 
+  font-weight: 900; 
+  font-stretch: 135%; 
+}
+
 :root {
   --jungle-orange: #F15A2B;
   --jungle-yellow: #FFD700;
@@ -14,8 +61,9 @@ body {
 
 /* Geometric Typography - placeholder styles */
 .jungle-title {
-  font-family: 'Arial Black', Arial, sans-serif;
+  font-family: 'NaN Serf Sans Pan African', sans-serif;
   font-weight: 900;
+  font-stretch: 125%;
   letter-spacing: -0.02em;
   line-height: 0.85;
   width: 100vw;
@@ -25,17 +73,22 @@ body {
 
 /* Stretched version for landing page */
 .jungle-title-stretched {
-  font-family: 'Arial Black', Arial, sans-serif;
+  font-family: 'NaN Serf Sans Pan African', sans-serif;
   font-weight: 900;
+  font-stretch: 125%;
   letter-spacing: -0.02em;
-  line-height: 0.85;
+  line-height: 1;
   width: 100%;
-  transform: scaleX(1.8);
+  transform: scaleX(2.16);
   transform-origin: center;
-  font-size: clamp(2rem, 6vw, 5rem);
+  font-size: clamp(1.5rem, 4vw, 10.08rem);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .geometric-cuts {

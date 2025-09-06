@@ -19,8 +19,13 @@ export default function Header({ overlay = false, showCart = false, showClose = 
     // Overlay header for landing page - sits directly on colored sections, stretched to viewport
     return (
       <>
-        <div className="absolute top-0 left-0 right-0 z-50 py-4 flex justify-center items-center overflow-hidden">
-          <Link href="/" className="w-full">
+        <div className="sticky md:absolute top-0 left-0 right-0 z-50 h-12 md:h-24 flex justify-center items-center overflow-hidden">
+          {/* Background that matches the section layout */}
+          <div className="absolute inset-0 flex md:flex-row">
+            <div className="w-full md:w-1/2 bg-jungle-yellow"></div>
+            <div className="hidden md:block md:w-1/2 bg-jungle-orange"></div>
+          </div>
+          <Link href="/" className="w-full relative z-10">
             <h1 className="jungle-title-stretched text-black text-center cursor-pointer">
               JUNGLE SALE
             </h1>
@@ -33,8 +38,28 @@ export default function Header({ overlay = false, showCart = false, showClose = 
 
   // Fixed header for other pages - also stretched
   return (
-    <div className="absolute top-0 left-0 right-0 z-50 py-4 flex justify-center items-center overflow-hidden">
-      <Link href="/" className="w-full">
+    <div className="sticky md:absolute top-0 left-0 right-0 z-50 h-12 md:h-24 flex justify-center items-center overflow-hidden">
+      {/* Close Buttons - X and Close text grouped on left */}
+      {showClose && onClose && (
+        <div className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 flex items-center gap-1 md:gap-2 z-30">
+          <button 
+            type="button"
+            onClick={onClose}
+            className="text-black font-bold text-xl md:text-2xl hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer"
+          >
+            ×
+          </button>
+          <button 
+            type="button"
+            onClick={onClose}
+            className="text-black font-bold text-sm md:text-lg hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer"
+          >
+            Close
+          </button>
+        </div>
+      )}
+      
+      <Link href="/" className="w-full px-16 md:px-0">
         <h1 className="jungle-title-stretched text-black text-center cursor-pointer">
           JUNGLE SALE
         </h1>
@@ -44,28 +69,10 @@ export default function Header({ overlay = false, showCart = false, showClose = 
       {showCart && (
         <button 
           onClick={() => setIsCartOpen(true)}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-black font-bold text-lg hover:text-gray-700 transition-colors cursor-pointer"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-black font-bold text-sm md:text-lg hover:text-gray-700 transition-colors cursor-pointer z-20"
         >
           ({count}) On hold
         </button>
-      )}
-      
-      {/* Close Buttons - X and Close text grouped on left */}
-      {showClose && onClose && (
-        <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex items-center gap-2">
-          <button 
-            onClick={onClose}
-            className="text-black font-bold text-2xl hover:text-gray-700 transition-colors"
-          >
-            ×
-          </button>
-          <button 
-            onClick={onClose}
-            className="text-black font-bold text-lg hover:text-gray-700 transition-colors"
-          >
-            Close
-          </button>
-        </div>
       )}
       
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

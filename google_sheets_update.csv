@@ -1,0 +1,3 @@
+name,slug,description,image_urls,image_preview,tags,price_s,price_m,price_l,stock_s,stock_m,stock_l,size_s_name,size_m_name,size_l_name,size_s_height,size_m_height,size_l_height,display_order
+Monstera Deliciosa,monstera-deliciosa,"Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",/images/plants/monstera-deliciosa/large.jpg,🌿 Monstera,statement,25,45,75,8,12,6,Small,Medium,Large,0.5-1m,~1m,~2m,1
+Fiddle Leaf Fig,fiddle-leaf-fig,"Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",/images/plants/fiddle-leaf-fig/large.jpg,🎻 Fiddle Leaf,statement,35,65,95,5,8,3,Pot,Tree,Statement,30-60cm,1-1.5m,1.5-2m+,2
