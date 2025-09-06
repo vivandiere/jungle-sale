@@ -152,21 +152,21 @@ export default function ProductPage({ params }: ProductPageProps) {
                 availableSizes.map((sizeOption, index) => (
                 <div 
                   key={index}
-                  className="border-2 border-black text-black flex items-center justify-between p-4 cursor-pointer"
+                  className="border-2 border-black text-black flex flex-col md:flex-row md:items-center md:justify-between p-3 md:p-4 cursor-pointer gap-3 md:gap-4"
                   onClick={() => setSelectedSize(sizeOption.size)}
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="font-jungle-heavy">{sizeOption.size}</span>
-                    <span className="font-jungle-body">{sizeOption.height}</span>
-                    <span className="font-jungle-heavy">£{sizeOption.price}</span>
-                    <span className="text-sm font-jungle-body text-black/60">({sizeOption.stock} available)</span>
+                  <div className="flex items-center gap-2 md:gap-4 flex-wrap">
+                    <span className="font-jungle-heavy text-sm md:text-base">{sizeOption.size}</span>
+                    <span className="font-jungle-body text-sm md:text-base">{sizeOption.height}</span>
+                    <span className="font-jungle-heavy text-sm md:text-base">£{sizeOption.price}</span>
+                    <span className="text-xs md:text-sm font-jungle-body text-black/60">({sizeOption.stock} available)</span>
                   </div>
                   <button 
                     onClick={(e) => {
                       e.stopPropagation()
                       handleAddToCart(sizeOption)
                     }}
-                    className="bg-black text-jungle-orange px-6 py-2 font-jungle-bold hover:bg-jungle-yellow hover:text-black transition-colors uppercase"
+                    className="bg-black text-jungle-orange px-4 py-2 md:px-6 md:py-2 font-jungle-bold hover:bg-jungle-yellow hover:text-black transition-colors uppercase text-sm md:text-base self-start md:self-auto"
                     disabled={sizeOption.stock === 0}
                   >
                     {sizeOption.stock === 0 ? 'Out of Stock' : 'Add +'}

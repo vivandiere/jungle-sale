@@ -21,7 +21,7 @@ export default function Home() {
         </div>
         
         <div className="text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-black">WHOLESALE & EVENTS</h2>
+          <h2 className="text-2xl md:text-4xl font-jungle-black italic text-black">WHOLESALE & EVENTS</h2>
         </div>
       </Link>
 
@@ -39,7 +39,7 @@ export default function Home() {
         </div>
         
         <div className="text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-black">STUDIO SHOP</h2>
+          <h2 className="text-2xl md:text-4xl font-jungle-black italic text-black">STUDIO SHOP</h2>
         </div>
       </Link>
     </div>

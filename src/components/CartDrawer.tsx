@@ -52,7 +52,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <h2 className="text-2xl font-jungle-black text-black uppercase">On Hold ({count})</h2>
           <button 
             onClick={onClose}
-            className="text-black hover:text-black text-2xl font-bold"
+            className="text-black hover:text-black text-2xl font-jungle-bold"
           >
             ×
           </button>
@@ -86,7 +86,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <div className="flex-1 min-w-0">
                               <h3 className="font-jungle-heavy text-black text-sm italic mb-1">{item.name}</h3>
                       <p className="text-sm text-black mb-1">{item.size} • {item.height}</p>
-                      <p className="font-bold text-black">{formatPrice(item.price)}</p>
+                      <p className="font-jungle-bold text-black">{formatPrice(item.price)}</p>
                       
                       {/* Quantity Controls */}
                       <div className="flex items-center gap-2 mt-2">

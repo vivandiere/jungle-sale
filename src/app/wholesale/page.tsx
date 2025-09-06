@@ -8,7 +8,7 @@ export default function Wholesale() {
       
       <div className="px-8 max-w-4xl mx-auto text-center flex flex-col justify-center min-h-screen pt-4 md:pt-24">
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-black mb-8">WHOLESALE & EVENTS</h2>
+          <h2 className="text-4xl font-jungle-black italic text-black mb-8">WHOLESALE & EVENTS</h2>
           <div className="text-xl text-black leading-relaxed mb-8">
             Plants for sale from the Archives in Tottenham<br/>
             🪴 N15 / by appointment 💚 plant hire available<br/>
@@ -16,12 +16,12 @@ export default function Wholesale() {
           </div>
         </div>
 
-        <div className="space-y-4">
-          <button className="bg-black text-jungle-yellow px-8 py-4 text-xl font-jungle-bold hover:bg-jungle-orange hover:text-black transition-colors border-4 border-black uppercase">
+        <div className="flex flex-col md:flex-row gap-4 justify-center items-center w-full">
+          <button className="bg-black text-jungle-yellow px-3 py-3 text-xs md:text-sm font-jungle-bold hover:bg-jungle-orange hover:text-black transition-colors border-4 border-black uppercase w-full md:w-64 text-center whitespace-nowrap">
             Get wholesale pricelist
           </button>
           
-          <button className="bg-jungle-yellow text-black px-8 py-4 text-xl font-jungle-bold hover:bg-jungle-orange hover:text-black transition-colors border-4 border-black uppercase">
+          <button className="bg-jungle-yellow text-black px-3 py-3 text-xs md:text-sm font-jungle-bold hover:bg-jungle-orange hover:text-black transition-colors border-4 border-black uppercase w-full md:w-64 text-center whitespace-nowrap">
             Email us for enquiries
           </button>
         </div>

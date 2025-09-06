@@ -25,7 +25,7 @@ export default function Header({ overlay = false, showCart = false, showClose = 
             <div className="w-full md:w-1/2 bg-jungle-yellow"></div>
             <div className="hidden md:block md:w-1/2 bg-jungle-orange"></div>
           </div>
-          <Link href="/" className="w-full relative z-10">
+          <Link href="/" className="w-full relative z-10 px-16 md:px-0">
             <h1 className="jungle-title-stretched text-black text-center cursor-pointer">
               JUNGLE SALE
             </h1>
@@ -45,14 +45,14 @@ export default function Header({ overlay = false, showCart = false, showClose = 
           <button 
             type="button"
             onClick={onClose}
-            className="text-black font-bold text-xl md:text-2xl hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer"
+            className="text-black font-jungle-bold text-xl md:text-2xl hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer"
           >
             ×
           </button>
           <button 
             type="button"
             onClick={onClose}
-            className="text-black font-bold text-sm md:text-lg hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer"
+            className="text-black font-jungle-bold text-sm md:text-lg hover:text-gray-700 transition-colors px-2 py-1 cursor-pointer uppercase"
           >
             Close
           </button>
@@ -69,7 +69,7 @@ export default function Header({ overlay = false, showCart = false, showClose = 
       {showCart && (
         <button 
           onClick={() => setIsCartOpen(true)}
-          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-black font-bold text-sm md:text-lg hover:text-gray-700 transition-colors cursor-pointer z-20"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-black font-jungle-bold text-sm md:text-lg hover:text-gray-700 transition-colors cursor-pointer z-20 uppercase"
         >
           ({count}) On hold
         </button>

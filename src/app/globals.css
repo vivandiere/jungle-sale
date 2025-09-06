@@ -79,7 +79,7 @@ body {
   letter-spacing: -0.02em;
   line-height: 1;
   width: 100%;
-  transform: scaleX(2.16);
+  transform: scaleX(1.5);
   transform-origin: center;
   font-size: clamp(1.5rem, 4vw, 10.08rem);
   white-space: nowrap;
@@ -89,6 +89,12 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+@media (min-width: 768px) {
+  .jungle-title-stretched {
+    transform: scaleX(2.16);
+  }
 }
 
 .geometric-cuts {
