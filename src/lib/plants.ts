@@ -140,7 +140,7 @@ export async function fetchPlants(): Promise<Plant[]> {
 
 // Fallback mock data based on your actual Google Sheets
 function getMockPlants(): Plant[] {
-  return [
+  const plants = [
     {
       commonName: "Swiss Cheese Plant",
       latinName: "Monstera deliciosa",
@@ -186,6 +186,13 @@ function getMockPlants(): Plant[] {
       displayOrder: 2
     }
   ]
+  
+  console.log('🏭 Mock plants created:', plants.length)
+  plants.forEach((plant, index) => {
+    console.log(`🌱 Mock plant ${index}: "${plant.slug}" (${plant.commonName})`)
+  })
+  
+  return plants
 }
 
 // Get single plant by slug

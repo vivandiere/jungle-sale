@@ -35,6 +35,12 @@ export default function ProductPage({ params }: ProductPageProps) {
         console.log('📋 Fetched plants:', plants.length, 'plants')
         console.log('🌱 Available slugs:', plants.map(p => p.slug))
         
+        console.log('🔍 Detailed slug comparison:')
+        plants.forEach((plant, index) => {
+          console.log(`Plant ${index}: "${plant.slug}" === "${params.slug}" ? ${plant.slug === params.slug}`)
+          console.log(`Plant ${index} slug length: ${plant.slug.length}, param slug length: ${params.slug.length}`)
+        })
+        
         const foundPlant = plants.find(p => p.slug === params.slug)
         console.log('🎯 Found plant:', foundPlant ? foundPlant.commonName : 'NOT FOUND')
         
