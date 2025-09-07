@@ -23,7 +23,7 @@ export interface Plant {
 }
 
 // Google Sheets CSV URL - convert the sharing URL to CSV export
-const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1d7CylnrWYubl7lLuA6n2SQ6UIF9mC3UeF8p2kuoLaLo/export?format=csv'
+const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1d7CylnrWYubl7lLuA6n2SQ6UIF9mC3UeF8p2kuoLaLo/export?format=csv&gid=1869056405'
 
 // Parse CSV row into Plant object
 function parseCSVRow(row: string[]): Plant | null {
@@ -87,30 +87,49 @@ function parseCSVLine(line: string): string[] {
 // Fetch plants from Google Sheets
 export async function fetchPlants(): Promise<Plant[]> {
   try {
+    console.log('Fetching from URL:', SHEETS_CSV_URL)
     const response = await fetch(SHEETS_CSV_URL)
     if (!response.ok) {
       throw new Error(`Failed to fetch plants: ${response.statusText}`)
     }
     
     const csvText = await response.text()
+    console.log('Raw CSV response length:', csvText.length)
+    console.log('Raw CSV first 500 chars:', csvText.substring(0, 500))
+    
+    // Check if response is HTML (access denied)
+    if (csvText.trim().startsWith('<')) {
+      console.error('Received HTML instead of CSV - sheet may not be publicly accessible')
+      throw new Error('Google Sheets not publicly accessible')
+    }
+    
     const lines = csvText.split('\n').filter(line => line.trim() !== '')
+    console.log('CSV lines count:', lines.length)
+    
+    if (lines.length < 2) {
+      throw new Error('No data rows found in CSV')
+    }
     
     // Skip header row and parse data rows
     const plants: Plant[] = []
     for (let i = 1; i < lines.length; i++) {
       const row = parseCSVLine(lines[i])
-      console.log('Parsed CSV row:', row) // Debug log
+      console.log(`Row ${i} parsed:`, row)
       const plant = parseCSVRow(row)
       if (plant) {
-        console.log('Created plant:', plant) // Debug log
+        console.log('Created plant:', plant)
         plants.push(plant)
+      } else {
+        console.log(`Row ${i} failed to parse into plant:`, row)
       }
     }
     
     // Sort by display order
     return plants.sort((a, b) => a.displayOrder - b.displayOrder)
   } catch (error) {
-    console.error('Error fetching plants:', error)
+    console.error('Google Sheets access error:', error)
+    console.log('📊 USING MOCK DATA: To use live Google Sheets data, make your sheet publicly readable')
+    console.log('📋 Instructions: Share your sheet → Anyone with the link → Viewer access')
     // Fallback to mock data if Google Sheets fails
     return getMockPlants()
   }
@@ -126,7 +145,7 @@ function getMockPlants(): Plant[] {
       description: "Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",
       imageUrls: ["/images/plants/monstera-deliciosa/large.jpg"],
       imagePreview: "🌿 Monstera",
-      tags: "large",
+      tags: "statement", 
       priceS: 15,
       priceM: 25,
       priceL: 35,
@@ -148,10 +167,10 @@ function getMockPlants(): Plant[] {
       description: "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
       imageUrls: ["/images/plants/fiddle-leaf-fig/large.jpg"],
       imagePreview: "🎻 Fiddle Leaf",
-      tags: "large",
-      priceS: 10,
-      priceM: 20,
-      priceL: 20,
+      tags: "statement",
+      priceS: 25,
+      priceM: 35,
+      priceL: 45,
       stockS: 2,
       stockM: 2,
       stockL: 2,
