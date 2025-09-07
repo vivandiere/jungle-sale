@@ -135,7 +135,7 @@ export async function fetchPlants(): Promise<Plant[]> {
   }
 }
 
-// Fallback mock data based on your sheets
+// Fallback mock data based on your actual Google Sheets
 function getMockPlants(): Plant[] {
   return [
     {
@@ -146,12 +146,12 @@ function getMockPlants(): Plant[] {
       imageUrls: ["/images/plants/monstera-deliciosa/large.jpg"],
       imagePreview: "🌿 Monstera",
       tags: "statement", 
-      priceS: 15,
-      priceM: 25,
-      priceL: 35,
+      priceS: 25,
+      priceM: 35,
+      priceL: 0, // No large size in your sheet
       stockS: 5,
       stockM: 5,
-      stockL: 5,
+      stockL: 0,
       sizeSName: "Small",
       sizeMName: "Medium",
       sizeLName: "Large",
@@ -161,25 +161,25 @@ function getMockPlants(): Plant[] {
       displayOrder: 1
     },
     {
-      commonName: "Fiddle Leaf Fig",
+      commonName: "Fiddle Leaf Fig", 
       latinName: "Ficus lyrata",
       slug: "fiddle-leaf-fig",
       description: "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
       imageUrls: ["/images/plants/fiddle-leaf-fig/large.jpg"],
-      imagePreview: "🎻 Fiddle Leaf",
+      imagePreview: "🌱 Fiddle Leaf",
       tags: "statement",
-      priceS: 25,
-      priceM: 35,
-      priceL: 45,
-      stockS: 2,
-      stockM: 2,
-      stockL: 2,
-      sizeSName: "Pot",
-      sizeMName: "Tree",
-      sizeLName: "Statement",
-      sizeSHeight: "30-60cm",
-      sizeMHeight: "1-1.5m",
-      sizeLHeight: "1.5-2m+",
+      priceS: 45,
+      priceM: 65,
+      priceL: 0, // No large size in your sheet
+      stockS: 5,
+      stockM: 5, 
+      stockL: 0,
+      sizeSName: "Small",
+      sizeMName: "Medium", 
+      sizeLName: "Large",
+      sizeSHeight: "0.5-1m",
+      sizeMHeight: "~1.5m",
+      sizeLHeight: "~2.5m",
       displayOrder: 2
     }
   ]

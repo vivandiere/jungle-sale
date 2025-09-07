@@ -6,44 +6,9 @@ import { useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import Image from 'next/image'
 import { useCart } from '@/contexts/CartContext'
-import { getPlantSizes, getPlantImage, type Plant } from '@/lib/plants'
+import { getPlantSizes, getPlantImage, fetchPlants, type Plant } from '@/lib/plants'
 import Toast from '@/components/Toast'
 
-// Direct mock plants data
-const mockPlantsData: Plant[] = [
-  {
-    commonName: "Swiss Cheese Plant",
-    latinName: "Monstera deliciosa",
-    slug: "monstera-deliciosa",
-    description: "Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",
-    imageUrls: ["/images/plants/monstera-deliciosa/large.jpg"],
-    imagePreview: "🌿 Monstera",
-    tags: "large",
-    priceS: 15,
-    priceM: 25,
-    priceL: 35,
-    stockS: 5,
-    stockM: 5,
-    stockL: 5,
-    displayOrder: 1
-  },
-  {
-    commonName: "Fiddle Leaf Fig",
-    latinName: "Ficus lyrata",
-    slug: "fiddle-leaf-fig",
-    description: "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
-    imageUrls: ["/images/plants/fiddle-leaf-fig/medium.jpg"],
-    imagePreview: "🎻 Fiddle Leaf",
-    tags: "large",
-    priceS: 10,
-    priceM: 20,
-    priceL: 20,
-    stockS: 2,
-    stockM: 2,
-    stockL: 2,
-    displayOrder: 2
-  }
-]
 
 interface ProductPageProps {
   params: {
@@ -55,13 +20,33 @@ export default function ProductPage({ params }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
+  const [plant, setPlant] = useState<Plant | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
   const { addItem } = useCart()
 
-  // Direct plant lookup - no async needed
-  const plant = mockPlantsData.find(p => p.slug === params.slug)
-  const loading = false
-  const error = plant ? null : 'Plant not found'
+  useEffect(() => {
+    async function loadPlant() {
+      try {
+        setLoading(true)
+        const plants = await fetchPlants()
+        const foundPlant = plants.find(p => p.slug === params.slug)
+        if (foundPlant) {
+          setPlant(foundPlant)
+        } else {
+          setError('Plant not found')
+        }
+      } catch (err) {
+        setError('Failed to load plant')
+        console.error('Error loading plant:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    
+    loadPlant()
+  }, [params.slug])
 
   const handleClose = () => {
     router.push('/shop')
