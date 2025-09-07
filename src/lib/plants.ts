@@ -27,7 +27,7 @@ const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1d7CylnrWYubl7lLu
 
 // Parse CSV row into Plant object
 function parseCSVRow(row: string[]): Plant | null {
-  if (row.length < 15 || !row[0] || !row[1] || !row[2]) {
+  if (row.length < 19 || !row[0] || !row[1] || !row[2]) {
     return null // Skip empty or incomplete rows
   }
 
@@ -45,7 +45,13 @@ function parseCSVRow(row: string[]): Plant | null {
     stockS: parseInt(row[10]) || 0,
     stockM: parseInt(row[11]) || 0,
     stockL: parseInt(row[12]) || 0,
-    displayOrder: parseInt(row[13]) || 0
+    sizeSName: row[13]?.trim() || '',
+    sizeMName: row[14]?.trim() || '',
+    sizeLName: row[15]?.trim() || '',
+    sizeSHeight: row[16]?.trim() || '',
+    sizeMHeight: row[17]?.trim() || '',
+    sizeLHeight: row[18]?.trim() || '',
+    displayOrder: parseInt(row[19]) || 0
   }
 }
 
@@ -80,12 +86,6 @@ function parseCSVLine(line: string): string[] {
 
 // Fetch plants from Google Sheets
 export async function fetchPlants(): Promise<Plant[]> {
-  // For now, use mock data to avoid CSV parsing issues
-  // TODO: Fix CSV parsing for Google Sheets integration
-  console.log('Using mock data for now - Google Sheets integration temporarily disabled')
-  return getMockPlants()
-  
-  /* 
   try {
     const response = await fetch(SHEETS_CSV_URL)
     if (!response.ok) {
@@ -114,7 +114,6 @@ export async function fetchPlants(): Promise<Plant[]> {
     // Fallback to mock data if Google Sheets fails
     return getMockPlants()
   }
-  */
 }
 
 // Fallback mock data based on your sheets

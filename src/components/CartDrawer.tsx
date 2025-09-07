@@ -3,7 +3,7 @@
 import { useCart } from '@/contexts/CartContext'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import BookingModal from './BookingModal'
+import { useRouter } from 'next/navigation'
 
 interface CartDrawerProps {
   isOpen: boolean
@@ -12,7 +12,7 @@ interface CartDrawerProps {
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, total, count, removeItem, updateQuantity, clearCart } = useCart()
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const router = useRouter()
   const [mounted, setMounted] = useState(false)
 
   // Prevent hydration mismatch
@@ -134,8 +134,8 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               
               {/* Minimum Order Notice */}
               {total < 30 && (
-                <div className="bg-black text-jungle-orange p-3 border-2 border-black mb-3">
-                  <p className="text-sm font-jungle-bold text-center">
+                <div className="mb-3">
+                  <p className="text-sm font-jungle-body text-black text-center leading-relaxed">
                     Minimum order £30 • Add £{(30 - total).toFixed(0)} more
                   </p>
                 </div>
@@ -144,7 +144,11 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               {/* Action Buttons */}
               <div className="space-y-3">
                         <button 
-                          onClick={() => setIsBookingModalOpen(true)}
+                          onClick={() => {
+                            if (total >= 30) {
+                              router.push('/checkout')
+                            }
+                          }}
                           className={`w-full py-3 px-4 font-jungle-bold transition-colors uppercase ${
                             total >= 30 
                               ? 'bg-black text-jungle-orange hover:bg-jungle-yellow hover:text-black' 
@@ -164,18 +168,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               
               {/* Note */}
               <p className="text-xs text-black mt-4 text-center">
-                £30 minimum order • Plants held for 24 hours • Book pickup to confirm
+                £30 minimum order • Plants held for 7 days • Book pickup to confirm
               </p>
             </div>
           )}
         </div>
       </div>
-
-      {/* Booking Modal */}
-      <BookingModal 
-        isOpen={isBookingModalOpen} 
-        onClose={() => setIsBookingModalOpen(false)} 
-      />
     </>
   )
 }

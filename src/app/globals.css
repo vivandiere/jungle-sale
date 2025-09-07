@@ -81,7 +81,7 @@ body {
   width: 100%;
   transform: scaleX(1.5);
   transform-origin: center;
-  font-size: clamp(1.2rem, 3vw, 10.08rem);
+  font-size: clamp(1.2rem, 5vw, 10.08rem);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
