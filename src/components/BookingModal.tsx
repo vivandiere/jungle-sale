@@ -9,7 +9,7 @@ interface BookingModalProps {
 }
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
-  const { items, total } = useCart()
+  const { items, total, clearCart } = useCart()
 
   // Create cart summary for Calendly
   const cartSummary = items.map(item => 
@@ -32,15 +32,34 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
       script.async = true
       document.head.appendChild(script)
 
+      // Listen for Calendly events
+      const handleCalendlyEvent = (e: MessageEvent) => {
+        if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+          // Appointment booked successfully
+          console.log('Calendly appointment scheduled:', e.data)
+          
+          // Clear the cart
+          clearCart()
+          
+          // Close the modal after a short delay
+          setTimeout(() => {
+            onClose()
+          }, 2000)
+        }
+      }
+
+      window.addEventListener('message', handleCalendlyEvent)
+
       return () => {
         // Cleanup
+        window.removeEventListener('message', handleCalendlyEvent)
         const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
         if (existingScript) {
           document.head.removeChild(existingScript)
         }
       }
     }
-  }, [isOpen])
+  }, [isOpen, clearCart, onClose])
 
   if (!isOpen) return null
 
