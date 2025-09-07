@@ -88,6 +88,8 @@ function parseCSVLine(line: string): string[] {
 export async function fetchPlants(): Promise<Plant[]> {
   try {
     console.log('Fetching from URL:', SHEETS_CSV_URL)
+    // Temporarily force fallback to mock data for debugging
+    throw new Error('Forcing mock data for debugging')
     const response = await fetch(SHEETS_CSV_URL)
     if (!response.ok) {
       throw new Error(`Failed to fetch plants: ${response.statusText}`)
