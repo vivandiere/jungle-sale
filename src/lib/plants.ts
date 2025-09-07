@@ -131,7 +131,10 @@ export async function fetchPlants(): Promise<Plant[]> {
     console.log('📊 USING MOCK DATA: To use live Google Sheets data, make your sheet publicly readable')
     console.log('📋 Instructions: Share your sheet → Anyone with the link → Viewer access')
     // Fallback to mock data if Google Sheets fails
-    return getMockPlants()
+    const mockPlants = getMockPlants()
+    console.log('🔄 Returning', mockPlants.length, 'mock plants')
+    console.log('🔗 Mock plant slugs:', mockPlants.map(p => p.slug))
+    return mockPlants
   }
 }
 

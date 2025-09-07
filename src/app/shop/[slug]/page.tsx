@@ -30,16 +30,24 @@ export default function ProductPage({ params }: ProductPageProps) {
     async function loadPlant() {
       try {
         setLoading(true)
+        console.log('🔍 Loading plant with slug:', params.slug)
         const plants = await fetchPlants()
+        console.log('📋 Fetched plants:', plants.length, 'plants')
+        console.log('🌱 Available slugs:', plants.map(p => p.slug))
+        
         const foundPlant = plants.find(p => p.slug === params.slug)
+        console.log('🎯 Found plant:', foundPlant ? foundPlant.commonName : 'NOT FOUND')
+        
         if (foundPlant) {
           setPlant(foundPlant)
         } else {
+          console.error('❌ Plant not found. Looking for slug:', params.slug)
+          console.error('❌ Available slugs:', plants.map(p => p.slug))
           setError('Plant not found')
         }
       } catch (err) {
         setError('Failed to load plant')
-        console.error('Error loading plant:', err)
+        console.error('💥 Error loading plant:', err)
       } finally {
         setLoading(false)
       }
