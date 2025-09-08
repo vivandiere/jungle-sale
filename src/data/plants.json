@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Monstera Deliciosa",
+    "slug": "monstera-deliciosa",
+    "commonName": "Monstera Deliciosa",
+    "latinName": "Monstera deliciosa",
+    "description": "Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",
+    "imageUrls": [
+      "/images/monstera1.jpg",
+      "/images/monstera2.jpg"
+    ],
+    "imagePreview": "🌿 Monstera",
+    "tags": ["statement"],
+    "priceS": 25,
+    "priceM": 45,
+    "priceL": 75,
+    "stockS": 8,
+    "stockM": 12,
+    "stockL": 6,
+    "sizeSName": "Small",
+    "sizeMName": "Medium", 
+    "sizeLName": "Large",
+    "sizeSHeight": "0.5-1m",
+    "sizeMHeight": "~1m",
+    "sizeLHeight": "~2m",
+    "displayOrder": 1
+  },
+  {
+    "name": "Fiddle Leaf Fig",
+    "slug": "fiddle-leaf-fig",
+    "commonName": "Fiddle Leaf Fig",
+    "latinName": "Ficus lyrata",
+    "description": "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
+    "imageUrls": [
+      "/images/fiddle1.jpg",
+      "/images/fiddle2.jpg"
+    ],
+    "imagePreview": "🎻 Fiddle Leaf",
+    "tags": ["statement"],
+    "priceS": 35,
+    "priceM": 65,
+    "priceL": 95,
+    "stockS": 5,
+    "stockM": 8,
+    "stockL": 3,
+    "sizeSName": "Pot",
+    "sizeMName": "Tree",
+    "sizeLName": "Statement",
+    "sizeSHeight": "30-60cm",
+    "sizeMHeight": "1-1.5m",
+    "sizeLHeight": "1.5-2m+",
+    "displayOrder": 2
+  }
+]
