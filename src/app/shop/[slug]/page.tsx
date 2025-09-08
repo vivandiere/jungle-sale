@@ -37,8 +37,10 @@ export default function ProductPage({ params }: ProductPageProps) {
         
         console.log('🔍 Detailed slug comparison:')
         plants.forEach((plant, index) => {
+          console.log(`Plant ${index} object:`, plant)
+          console.log(`Plant ${index} slug property:`, plant.slug)
           console.log(`Plant ${index}: "${plant.slug}" === "${params.slug}" ? ${plant.slug === params.slug}`)
-          console.log(`Plant ${index} slug length: ${plant.slug.length}, param slug length: ${params.slug.length}`)
+          console.log(`Plant ${index} slug length: ${plant.slug ? plant.slug.length : 'undefined'}, param slug length: ${params.slug.length}`)
         })
         
         const foundPlant = plants.find(p => p.slug === params.slug)

@@ -191,9 +191,11 @@ function getMockPlants(): Plant[] {
   
   console.log('🏭 Mock plants created:', plants.length)
   plants.forEach((plant, index) => {
-    console.log(`🌱 Mock plant ${index}: "${plant.slug}" (${plant.commonName})`)
+    console.log(`🌱 Mock plant ${index}:`, plant)
+    console.log(`🔗 Mock plant ${index} slug: "${plant.slug}" (${plant.commonName})`)
   })
   
+  console.log('🚀 Returning mock plants array:', plants)
   return plants
 }
 
