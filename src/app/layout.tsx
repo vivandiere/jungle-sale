@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { CartProvider } from '@/contexts/CartContext'
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
   title: 'Jungle Sale - Premium Plant Studio',
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body className="bg-white font-jungle-body">
         <CartProvider>
           {children}
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>

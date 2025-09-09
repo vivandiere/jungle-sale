@@ -6,8 +6,7 @@
     "latinName": "Monstera deliciosa",
     "description": "Large, glossy leaves with distinctive splits and holes. Perfect statement plant for any room.",
     "imageUrls": [
-      "/images/monstera1.jpg",
-      "/images/monstera2.jpg"
+      "/images/plants/monstera-deliciosa/large.jpg"
     ],
     "imagePreview": "🌿 Monstera",
     "tags": ["statement"],
@@ -32,8 +31,7 @@
     "latinName": "Ficus lyrata",
     "description": "Elegant tree with large, violin-shaped leaves. Adds height and drama to any space.",
     "imageUrls": [
-      "/images/fiddle1.jpg",
-      "/images/fiddle2.jpg"
+      "/images/plants/fiddle-leaf-fig/medium.jpg"
     ],
     "imagePreview": "🎻 Fiddle Leaf",
     "tags": ["statement"],
