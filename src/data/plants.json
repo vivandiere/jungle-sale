@@ -9,7 +9,7 @@
       "/images/plants/monstera-deliciosa/large.jpg"
     ],
     "imagePreview": "🌿 Monstera",
-    "tags": ["statement"],
+    "tags": "statement",
     "priceS": 25,
     "priceM": 45,
     "priceL": 75,
@@ -34,7 +34,7 @@
       "/images/plants/fiddle-leaf-fig/medium.jpg"
     ],
     "imagePreview": "🎻 Fiddle Leaf",
-    "tags": ["statement"],
+    "tags": "statement",
     "priceS": 35,
     "priceM": 65,
     "priceL": 95,
