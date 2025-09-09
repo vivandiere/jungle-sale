@@ -69,7 +69,7 @@ export default function Header({ overlay = false, showCart = false, showClose = 
       {showCart && (
         <button 
           onClick={() => setIsCartOpen(true)}
-          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-black font-jungle-bold text-sm md:text-lg hover:text-jungle-yellow hover:border-jungle-yellow transition-all duration-300 cursor-pointer z-20 uppercase border-2 border-black px-4 py-2"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-black font-jungle-bold text-xs md:text-lg hover:text-jungle-yellow hover:border-jungle-yellow transition-all duration-300 cursor-pointer z-20 uppercase border-2 border-black px-2 py-1 md:px-4 md:py-2"
         >
           ({count}) On hold
         </button>
